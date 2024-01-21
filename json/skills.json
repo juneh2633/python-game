@@ -1,0 +1,59 @@
+{
+    "몸통박치기": {
+        "power": 40,
+        "accuracy_rate": 100,
+        "pp": 35,
+        "atk_type": "normal"
+    },
+    "덩굴채찍": {
+        "power": 45,
+        "accuracy_rate": 100,
+        "pp": 25,
+        "atk_type": "leaf"
+    },
+    "잎날가르기": {
+        "power": 55,
+        "accuracy_rate": 90,
+        "pp": 25,
+        "atk_type": "leaf"
+    },
+
+    "할퀴기": {
+        "power": 40,
+        "accuracy_rate": 100,
+        "pp": 35,
+        "atk_type": "normal"
+    },
+    "울음소리": {
+        "power": 0,
+        "accuracy_rate": 100,
+        "pp": 40,
+        "atk_type": "deberf",
+        "deberf": { "atk": -10 }
+    },
+    "불꽃세례": {
+        "power": 40,
+        "accuracy_rate": 100,
+        "pp": 25,
+        "atk_type": "fire"
+    },
+    "꼬리흔들기": {
+        "power": 0,
+        "accuracy_rate": 100,
+        "pp": 30,
+        "atk_type": "deberf",
+        "deberf": { "dfs": -10 }
+    },
+    "물대포": {
+        "power": 40,
+        "accuracy_rate": 100,
+        "pp": 25,
+        "atk_type": "water"
+    },
+    "발버둥": {
+        "power": 30,
+        "accuracy_rate": 100,
+        "pp": 0,
+        "atk_type": "normal"
+    }
+}

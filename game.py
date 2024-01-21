@@ -1,46 +1,26 @@
 import random
+import json
 
 
-class Monster:
-    def __init__(self, name, health):
-        self.name = name
-        self.health = health
-
-    def attack(self, target):
-        damage = random.randint(10, 20)
-        target.health -= damage
-        print(f"{self.name} attacks {target.name} for {damage} damage!")
-
-    def is_alive(self):
-        return self.health > 0
-
-
-class Player:
-    def __init__(self, name):
-        self.name = name
-        self.health = 100
-
-    def attack(self, target):
-        damage = random.randint(5, 15)
-        target.health -= damage
-        print(f"{self.name} attacks {target.name} for {damage} damage!")
-
-    def is_alive(self):
-        return self.health > 0
+from entities import Monster, monster_data
 
 
 def create_random_monster():
-    names = ["Charizard", "Bulbasaur", "Squirtle"]
-    name = random.choice(names)
-    health = random.randint(50, 100)
-    return Monster(name, health)
+    name = random.choice(list(monster_data.keys()))
+    attributes = monster_data[name]
+    return Monster(name, attributes["HP"], attributes["atk"], attributes["dfs"])
+
+
+# 게임의 메인 로직...
 
 
 def main():
-    player = Player("Player 1")
+    player = Monster("Charmander")
     monster = create_random_monster()
 
     print(f"A wild {monster.name} appears!")
+    print("\nPo: attack, quit")
+    command = input("Enter your pokemon: ").strip().lower()
 
     while player.is_alive() and monster.is_alive():
         print("\nCommands: attack, quit")
@@ -56,7 +36,7 @@ def main():
         else:
             print("Invalid command.")
 
-        print(f"\nPlayer Health: {player.health}, Monster Health: {monster.health}")
+        print(f"\nPlayer Health: {player.HP}, Monster Health: {monster.HP}")
 
     if not player.is_alive():
         print("You were defeated.")
