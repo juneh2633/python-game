@@ -7,7 +7,7 @@
         "atk_type": "leaf",
         "skill1": "몸통박치기",
         "skill2": "울음소리",
-        "skiil3": "덩굴채찍"
+        "skill3": "덩굴채찍"
     },
     "Bulbasaur": {
         "HP": 39,
@@ -17,7 +17,7 @@
         "atk_type": "fire",
         "skill1": "할퀴기",
         "skill2": "울음소리",
-        "skiil3": "불꽃세례"
+        "skill3": "불꽃세례"
     },
     "Squirtle": {
         "HP": 44,
@@ -27,6 +27,6 @@
         "atk_type": "water",
         "skill1": "몸통박치기",
         "skill2": "꼬리흔들기",
-        "skiil3": "거품"
+        "skill3": "거품"
     }
 }

@@ -2,28 +2,40 @@ import random
 import json
 
 
-from entities import Monster, monster_data
+from entities import Monster
 
 
-def create_random_monster():
-    name = random.choice(list(monster_data.keys()))
-    attributes = monster_data[name]
-    return Monster(name, attributes["HP"], attributes["atk"], attributes["dfs"])
+def load_monster_data():
+    with open("json/monsters.json", "r") as file:
+        data = json.load(file)
+    return data
 
 
-# 게임의 메인 로직...
+def create_monster(monster_name):
+    if monster_name == "random":
+        monster_data = load_monster_data()
+        monster_name = random.choice(list(monster_data.keys()))
+
+    return Monster(monster_name)
 
 
 def main():
-    player = Monster("Charmander")
-    monster = create_random_monster()
+    monster = create_monster("random")
+    monster_data = load_monster_data()
 
+    message = "******Choose your pokemon****** \n" + ", ".join(
+        f"({item})" for item in monster_data
+    )
     print(f"A wild {monster.name} appears!")
-    print("\nPo: attack, quit")
-    command = input("Enter your pokemon: ").strip().lower()
+    print(message)
+    command = input("Enter your pokemon: ").strip()
+    player = create_monster(command)
 
     while player.is_alive() and monster.is_alive():
-        print("\nCommands: attack, quit")
+        print(f"\n HP: {player.HP}, pp: {player.pp}")
+        print(
+            f"\nCommands: {player.skill1_name},{player.skill2_name}, {player.skill3_name} quit"
+        )
         command = input("Enter your command: ").strip().lower()
 
         if command == "attack":
@@ -36,7 +48,7 @@ def main():
         else:
             print("Invalid command.")
 
-        print(f"\nPlayer Health: {player.HP}, Monster Health: {monster.HP}")
+        print(f"\nPlayer HP: {player.HP}, Monster HP: {monster.HP}")
 
     if not player.is_alive():
         print("You were defeated.")
