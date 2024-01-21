@@ -1,0 +1,21 @@
+{
+    "Charmander": {
+        "HP": 45,
+        "atk": 49,
+        "dfs": 49,
+        "spd": 45,
+        "type": "leaf",
+        "skill1": "몸통박치기",
+        "skill2": "덩굴채찍"
+    },
+    "Bulbasaur": {
+        "HP": 70,
+        "atk": 10,
+        "defense": 10
+    },
+    "Squirtle": {
+        "HP": 65,
+        "atk": 9,
+        "defense": 12
+    }
+}

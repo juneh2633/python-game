@@ -1,0 +1,20 @@
+{
+    "몸통박치기": {
+        "power": 40,
+        "accuracy_rate": 100,
+        "pp": 35,
+        "type": "normal"
+    },
+    "덩굴채찍": {
+        "power": 45,
+        "accuracy_rate": 100,
+        "pp": 25,
+        "type": "leaf"
+    },
+    "잎날가르기": {
+        "power": 55,
+        "accuracy_rate": 90,
+        "pp": 25,
+        "type": "leaf"
+    }
+}
