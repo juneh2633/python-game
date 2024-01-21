@@ -2,26 +2,13 @@ import random
 import json
 
 
-from entities import Monster
-
-
-def load_monster_data():
-    with open("json/monsters.json", "r") as file:
-        data = json.load(file)
-    return data
-
-
-def create_monster(monster_name):
-    if monster_name == "random":
-        monster_data = load_monster_data()
-        monster_name = random.choice(list(monster_data.keys()))
-
-    return Monster(monster_name)
+from classes.entities import Monster
+from module import monster_manㄴage as mm
 
 
 def main():
-    monster = create_monster("random")
-    monster_data = load_monster_data()
+    monster = mm.create_monster("random")
+    monster_data = mm.load_monster_data()
 
     message = "******Choose your pokemon****** \n" + ", ".join(
         f"({i})" for i in monster_data
@@ -29,7 +16,7 @@ def main():
     print(f"A wild {monster.name} appears!")
     print(message)
     command = input("Enter your pokemon: ").strip()
-    player = create_monster(command)
+    player = mm.create_monster(command)
     available_skills = [monster.skill1_name, monster.skill2_name, monster.skill3_name]
 
     while player.is_alive() and monster.is_alive():
