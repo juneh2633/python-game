@@ -32,32 +32,27 @@ class Monster:
         self.skill2_name = stat["skill2"]
         self.skill3_name = stat["skill3"]
         self.skill4_name = "발버둥"
-        self.skill1 = skill_data[self.skill1_name]
-        self.skill2 = skill_data[self.skill2_name]
-        self.skill3 = skill_data[self.skill3_name]
-        self.skill4 = skill_data["발버둥"]
 
-        def use_skill(self, skill, target):
-            skill_info = getattr(self, skill)
-            self.pp -= skill_info["pp"]
-            if random.randint(1, 100) <= skill_info["accuracy_rate"]:
-                damage = skill_info["power"] * (self.atk + 100) / 100
-                target.HP -= damage * target.dfs / 100
+    def use_skill(self, skill_name, target):
+        skill_info = skill_data[skill_name]
+        self.pp -= skill_info["pp"]
+        print(f"{skill_name}, {skill_info}")
+        if random.randint(1, 100) <= skill_info["accuracy_rate"]:
+            damage = skill_info["power"] * (self.atk + 100) / 100
+            target.HP -= damage * target.dfs / 100
 
-                if skill_info["type"] == "deberf":
-                    if skill_info["deberf"] == "atk":
-                        target.atk += skill_info["deberf"]["atk"]
-                    elif skill_info["debef"] == "dfs":
-                        target.dfs += skill_info["deberf"]["dfs"]
-                    print(
-                        f"{self.name} uses {skill_info['name']} on {target.name} for deberf!"
-                    )
-                else:
-                    print(
-                        f"{self.name} uses {skill_info['name']} on {target.name} for {damage} damage!"
-                    )
+            if skill_info["atk_type"] == "deberf":
+                if skill_info["deberf"] == "atk":
+                    target.atk += skill_info["deberf"]["atk"] + random.randint(-3, 3)
+                elif skill_info["deberf"] == "dfs":
+                    target.dfs += skill_info["deberf"]["dfs"]
+                print(f"{self.name} uses {skill_name} on {target.name} for deberf!")
             else:
-                print(f"{self.name}'s {skill_info['name']} missed!")
+                print(
+                    f"{self.name} uses {skill_name} on {target.name} for {damage} damage!"
+                )
+        else:
+            print(f"{self.name}'s {skill_name} missed!")
 
     def is_alive(self):
         return self.HP > 0
