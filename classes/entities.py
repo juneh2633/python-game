@@ -1,25 +1,16 @@
 import random
 import json
-
-
-def load_skill_data():
-    with open("json/skills.json", "r") as file:
-        data = json.load(file)
-    return data
-
+from modules.load_data import load_monster_data
+from modules.load_data import load_skill_data
+from modules.load_data import load_type_data
 
 skill_data = load_skill_data()
-
-
-def load_monster_data():
-    with open("json/monsters.json", "r") as file:
-        data = json.load(file)
-    return data
+monster_data = load_monster_data()
+type_data = load_type_data()
 
 
 class Monster:
     def __init__(self, name):
-        monster_data = load_monster_data()
         stat = monster_data[name]
         self.name = name
         self.HP = stat["HP"]
@@ -36,9 +27,15 @@ class Monster:
     def use_skill(self, skill_name, target):
         skill_info = skill_data[skill_name]
         self.pp -= skill_info["pp"]
-        print(f"{skill_name}, {skill_info}")
+
         if random.randint(1, 100) <= skill_info["accuracy_rate"]:
-            damage = skill_info["power"] * (self.atk + 100) / 100
+            type_damage = type_data[skill_info["atk_type"]][target.atk_type]
+            damage = (
+                skill_info["power"]
+                * (self.atk + 100 + random.randint(-3, 3))
+                / 100
+                * (type_damage)
+            )
             target.HP -= damage * target.dfs / 100
 
             if skill_info["atk_type"] == "deberf":
@@ -49,10 +46,15 @@ class Monster:
                 print(f"{self.name} uses {skill_name} on {target.name} for deberf!")
             else:
                 print(
-                    f"{self.name} uses {skill_name} on {target.name} for {damage} damage!"
+                    f"{self.name} uses {skill_name} on {target.name} for {damage * target.dfs / 100} damage!"
                 )
         else:
             print(f"{self.name}'s {skill_name} missed!")
 
     def is_alive(self):
         return self.HP > 0
+
+
+class Skill:
+    def __init__(self, name):
+        skill_data = load_skill_data()

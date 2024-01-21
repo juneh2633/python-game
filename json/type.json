@@ -1,0 +1,32 @@
+{
+    "normal": {
+        "normal": 1,
+        "fire": 1,
+        "water": 1,
+        "leaf": 1
+    },
+    "fire": {
+        "normal": 1,
+        "fire": 0.5,
+        "water": 0.5,
+        "leaf": 1.5
+    },
+    "water": {
+        "normal": 1,
+        "fire": 1.5,
+        "water": 0.5,
+        "leaf": 0.5
+    },
+    "leaf": {
+        "normal": 1,
+        "fire": 0.5,
+        "water": 1.5,
+        "leaf": 0.5
+    },
+    "deberf": {
+        "normal": 0,
+        "fire": 0,
+        "water": 0,
+        "leaf": 0
+    }
+}
