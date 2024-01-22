@@ -52,7 +52,6 @@ def main():
             elif player.pp <= 0:
                 print("pp가 없어 발버둥을 했다.")
                 player_skill = player.skill4_name
-                fight(player, monster, player.skill)
                 turn = 1
             elif command == "1":
                 player_skill = player.skill1_name
